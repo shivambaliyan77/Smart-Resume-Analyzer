@@ -83,6 +83,45 @@
 //   console.log(` Server is running on http://localhost:${PORT}`);
 // });
 
+// import express from "express";
+// import cors from "cors";
+// import dotenv from "dotenv";
+// import connectDB from "./config/db.js";
+// import authRoutes from "./routes/authRoutes.js";
+// import userRoutes from "./routes/userRoutes.js";
+// import resumeRoutes from "./routes/resumeRoutes.js";
+// import customizeRoutes from "./routes/customizeRoutes.js";
+// import { protect } from "./middleware/authMiddleware.js";
+
+// dotenv.config();
+
+// const app = express();
+// const PORT = process.env.PORT || 5000;
+
+// // CORS Fix
+// app.use(cors());
+// app.use(express.json());
+
+// // MongoDB connect
+// connectDB();
+
+// // Test route
+// app.get("/", (req, res) => {
+//   res.send("SmartResume Backend is working");
+// });
+
+// // Routes
+// app.use("/api/auth", authRoutes);
+// app.use("/api/users", userRoutes);
+// app.use("/uploads", express.static("uploads"));
+// app.use("/api/resume", protect, resumeRoutes);
+// app.use("/api/customize-resume", protect, customizeRoutes);
+
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server is running on ${PORT}`);
+// });
+
+//---deployment---
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -98,8 +137,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS Fix
-app.use(cors());
+// ✅ FIXED CORS (IMPORTANT)
+app.use(
+  cors({
+    origin: "https://smart-resume-analyzer-lilac.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  }),
+);
+
 app.use(express.json());
 
 // MongoDB connect
