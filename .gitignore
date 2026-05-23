@@ -4,7 +4,7 @@
 
 # Production build output from the client
 /client/dist
-
+build
 # Environment variables - VERY IMPORTANT
 .env
 /server/.env

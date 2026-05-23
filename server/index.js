@@ -138,9 +138,20 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ✅ FIXED CORS (IMPORTANT)
+// app.use(
+//   cors({
+//     origin: "https://smart-resume-analyzer-lilac.vercel.app",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   }),
+// );
+
 app.use(
   cors({
-    origin: "https://smart-resume-analyzer-lilac.vercel.app",
+    origin: [
+      "http://localhost:5173",
+      "https://smart-resume-analyzer-lilac.vercel.app",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
